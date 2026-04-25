@@ -1,0 +1,17 @@
+[
+  {
+    "language": "Japanese",
+    "region": "East Asia",
+    "moods": ["success"],
+    "originalText": "猿も木から落ちる",
+    "phonetic": "Saru mo ki kara ochiru",
+    "literalTranslation": "Even monkeys fall from trees",
+    "idiomaticMeaning": "Even experts make mistakes",
+    "examples": [
+      {
+        "original": "プロでも失敗する。猿も木から落ちるだね。",
+        "translation": "Even professionals fail. Even monkeys fall from trees."
+      }
+    ]
+  }
+]
