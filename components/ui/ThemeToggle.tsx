@@ -1,28 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 
 const THEME_KEY = "globalidioms-theme";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
+  useEffect(() => {
     const saved = localStorage.getItem(THEME_KEY);
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return saved ? saved === "dark" : prefersDark;
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-  }, [isDark]);
+    const shouldBeDark = saved ? saved === "dark" : prefersDark;
+    localStorage.setItem(THEME_KEY, shouldBeDark ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+  }, []);
 
   const toggleTheme = () => {
-    setIsDark((current) => !current);
+    const isDark = document.documentElement.classList.contains("dark");
+    const next = !isDark;
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem(THEME_KEY, next ? "dark" : "light");
   };
 
-  return <Button onClick={toggleTheme}>{isDark ? "Light" : "Dark"} mode</Button>;
+  return <Button onClick={toggleTheme}>Toggle Theme</Button>;
 }
